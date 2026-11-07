@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya ❤️ Rupsa - Digital Hug</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffb6d5, #f8c8ff, #ffc6d9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    width: 95%;
+    max-width: 500px;
+    padding: 25px;
+}
+
+h1 {
+    color: #d63384;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #8e3564;
+    margin-bottom: 40px;
+}
+
+.scene {
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.girl {
+    position: absolute;
+    font-size: 85px;
+    bottom: 55px;
+    transition: all 1.5s ease;
+}
+
+#priya {
+    left: 5%;
+}
+
+#rupsa {
+    right: 5%;
+    transform: scaleX(-1);
+}
+
+.name {
+    position: absolute;
+    bottom: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #9c2760;
+}
+
+.priya-name {
+    left: 10%;
+}
+
+.rupsa-name {
+    right: 10%;
+}
+
+.hug-heart {
+    position: absolute;
+    font-size: 35px;
+    top: 10px;
+    opacity: 0;
+    transition: 1s;
+}
+
+.hugging #priya {
+    left: 35%;
+    transform: scale(1.1);
+}
+
+.hugging #rupsa {
+    right: 35%;
+    transform: scaleX(-1.1) scale(1.1);
+}
+
+.hugging .hug-heart {
+    opacity: 1;
+    animation: heartbeat 0.8s infinite alternate;
+}
+
+@keyframes heartbeat {
+    from { transform: scale(1); }
+    to { transform: scale(1.4); }
+}
+
+.message {
+    color: #a32765;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 25px;
+    min-height: 35px;
+}
+
+button {
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    background: #ff4081;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #d6338466;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    animation: floatUp 4s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💕 A Special Hug 💕</h1>
+    <p class="subtitle">Two beautiful souls, one warm hug!</p>
+
+    <div class="scene" id="scene">
+
+        <div class="hug-heart">💗</div>
+
+        <div class="girl" id="priya">👩🏻‍🦰</div>
+        <div class="girl" id="rupsa">👩🏻‍🦱</div>
+
+        <div class="name priya-name">Priya</div>
+        <div class="name rupsa-name">Rupsa</div>
+
+    </div>
+
+    <div class="message" id="message">
+        Distance means nothing to a warm hug! ❤️
+    </div>
+
+    <button onclick="giveHug()">🫂 Give a Hug</button>
+
+</div>
+
+<script>
+let hugging = false;
+
+function giveHug() {
+
+    const scene = document.getElementById("scene");
+    const message = document.getElementById("message");
+
+    if (!hugging) {
+        scene.classList.add("hugging");
+
+        message.innerHTML =
+        "Priya 🤗 Rupsa — A Big Warm Hug! 💗";
+
+        createHearts();
+        hugging = true;
+
+    } else {
+        scene.classList.remove("hugging");
+
+        message.innerHTML =
+        "Distance means nothing to a warm hug! ❤️";
+
+        hugging = false;
+    }
+}
+
+function createHearts() {
+    for (let i = 0; i < 25; i++) {
+
+        let heart = document.createElement("div");
+
+        heart.className = "heart";
+        heart.innerHTML = ["💗", "💕", "❤️", "💖", "🫶"]
+        [Math.floor(Math.random() * 5)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (20 + Math.random() * 25) + "px";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
